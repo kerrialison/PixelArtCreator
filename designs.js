@@ -1,4 +1,3 @@
-
 const tbl = $("#pixel_canvas");
 
 // Function that clears previous grid and builds new grid based on inputs
@@ -61,13 +60,3 @@ const changeColor = cell => {
 const validateForm = () => {
   return false;
 };
- 
-// When size is submitted by the user, call makeGrid()
-//creating an event listener: target element first, then .on, 
-//then type of event listened for, then function
-// *use a convenience method**
-
-
-
-
-
