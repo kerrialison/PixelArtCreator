@@ -2,61 +2,39 @@ const tbl = $("#pixel_canvas");
 
 // Function that clears previous grid and builds new grid based on inputs
 
-// do I need to write it as $("#submit").addEventListener("click", function() {}); ??
+$('#sizePicker').submit(function(event) {
+    event.preventDefault();
+    //create table
 
-$("#submit").on("click", function(makeGrid) {
+    var tbl = document.getElementById("pixel_canvas");
+    //clear previously created grid before building new grid
 
-//create table
+    tbl.innerHTML = "";
+    //take value input for width and height
 
-  var tbl = document.createElement("table");
-  $("body").append(tbl);
+    let height = $("#input_height").val();
+    let width = $("#input_width").val();
 
-  //clear previously created grid before building new grid
+    //iterate over values and add them to width and height
 
-  tbl.innerHTML = "";
-//take value input for width and height
+    for (let i = 0; i < height; i++) {
+        let row = tbl.insertRow();
 
-  let height = "input_height.value";
-  let width = "input_width.value"; 
+        let j = 0;
 
-//iterate over values and add them to width and height
 
-  for (let i = 0; i < height; i++) {
-    const rows = document.createElement("tr"); //creates <tr> element
-
-    let j = 0;
-
-    while (j < width) {
-      const cells = document.createElement("td"); // creates <td> element
-
-      j++;
-
-      rows.appendChild(cells); // appends td's to tr's
+        while (j < width) {
+            let cell = row.insertCell();
+            cell.onclick(function(changeColor) {
+                    for (let i = 0; i < tbl.rows.length; i++) {
+                        for (let j = 0; j < tbl.rows[i].cells.length; j++)
+                            tbl.rows[i].cells[j].onclick = function() {
+                                changeColor(this);
+                            };
     }
-
-    tbl.appendChild(rows); //appends tr's to tbl
-  }
-
+          };
+              )
+            j++;
+        }
+    }
 });
-
-//do I have to call this function here since this function is based on an event listener?
-
-//Traverse the table and call the changeColour function on the selected table cell
-const changeColor = () => {
-  for (let i = 0; i < tbl.rows.length; i++) {
-    for (let j = 0; j < tbl.rows[i].cells.length; j++)
-      tbl.rows[i].cells[j].onclick = function() {
-        changeColor(this);
-      };
-  }
-};
-
-const changeColor = cell => {
-  const colour = document.getElementById("colorPicker").value;
-
-  cell.style.backgroundColor = colour;
-};
-
-const validateForm = () => {
-  return false;
-};
