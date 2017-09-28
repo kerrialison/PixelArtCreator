@@ -12,6 +12,7 @@ $('#sizePicker').submit(function(event) {
             let height = $("#input_height").val();
             let width = $("#input_width").val();
             //iterate over values and add them to width and height
+            //this is not adding more rows/cells
             for (let i = 0; i < height; i++) {
                 let row = tbl.insertRow();
 
@@ -20,6 +21,7 @@ $('#sizePicker').submit(function(event) {
                 while (j < width) {
                     let cell = row.insertCell();
                     cell.onclick(function() {
+                                //color isn't changing
                             const changeColour = cell => {
                                 const colour = document.getElementById("colorPicker").value;
 
